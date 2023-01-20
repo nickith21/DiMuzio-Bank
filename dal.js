@@ -1,5 +1,7 @@
+require('dotenv').config()
+
 const MongoClient = require('mongodb').MongoClient;
-const url         = 'mongodb+srv://Nick:Poopis1@cluster0.7zt6a7k.mongodb.net/?retryWrites=true&w=majority';
+const url = process.env.MONGO_DB_URI
 let db            = null;
  
 // connect to mongo
