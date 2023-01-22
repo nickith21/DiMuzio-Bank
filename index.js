@@ -36,7 +36,7 @@ app.get("/authenticatedRoute", (req, res) => {
     });
 });
 
-// create user account
+// id: 1 + 2 - create user account
 app.get("/account/create/:name/:email/:password/:id", function (req, res) {
   // check if account exists
   dal.find(req.params.email).then((users) => {
@@ -54,6 +54,16 @@ app.get("/account/create/:name/:email/:password/:id", function (req, res) {
         });
     }
   });
+});
+
+// id: 1 + 2 - firestore - create user account
+app.get("/account/create-with-firestore/:name/:email/:password/:id", function (req, res) {
+    dal
+      .createWithFS(req.params.name, req.params.email, req.params.password, req.params.id)
+      .then((user) => {
+        console.log(user);
+        res.send(user);
+      });
 });
 
 // login user
@@ -81,6 +91,7 @@ app.get("/account/find/:email", function (req, res) {
 });
 
 // find one user by id - alternative to find
+// connects to balance.js
 app.get("/account/findOne/:id", function (req, res) {
   dal.findOne(req.params.id).then((user) => {
     console.log(user);

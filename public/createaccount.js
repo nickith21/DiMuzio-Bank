@@ -32,7 +32,7 @@ function CreateMsg(props) {
       <button
         type="submit"
         className="btn btn-light"
-        onClick={() => props.setShow(true)}
+        onClick={() => props.setShow(true)} 
       >
         Add another account
       </button>

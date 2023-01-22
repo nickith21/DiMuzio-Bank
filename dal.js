@@ -12,7 +12,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     db = client.db('myproject');
 });
 
-// create user account
+// id: 1 - mongodb - create user account
 function create(name, email, password, id){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
@@ -23,7 +23,18 @@ function create(name, email, password, id){
     })
 }
 
-// find user account
+// id: 1 - firestore - create user account
+function createWithFS(name, email, password, id){
+    return new Promise((resolve, reject) => {    
+        const collection = fs.collection('users');
+        const doc = {name, email, password, balance: 0, _id: id};
+        collection.doc(id).set(doc).then(function(err, result) {
+            err ? reject(err) : resolve(doc);
+        });    
+    })
+}
+
+// id: 2 - find user account
 function find(email){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -77,4 +88,4 @@ function all(){
 }
 
 
-module.exports = {create, findOne, find, update, all};
+module.exports = {create, createWithFS, findOne, find, update, all};
