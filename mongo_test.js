@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
-const atlas = process.env.MONGO_DB_URI
+const atlas = "mongodb+srv://Nick:Poopis1@cluster0.7zt6a7k.mongodb.net/?retryWrites=true&w=majority"
  
 // connect to mongo
 MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
