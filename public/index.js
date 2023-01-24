@@ -3,6 +3,7 @@ function Spa() {
   const [loggedOut, setLoggedOut] = React.useState(true);
   const [signedInEmail, setSignedInEmail] = React.useState("");
   const [signedInUID, setSignedInUID] = React.useState("");
+  const [admin, setAdmin] = React.useState(false);
 
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -10,12 +11,26 @@ function Spa() {
       setLoggedOut(false);
       setSignedInEmail(user.email);
       setSignedInUID(user.uid);
-      console.log("auth changed uid:", signedInUID);
+      fetch(`/account/findOne/${user.uid}`)
+        .then(response => response.json())
+        .then(json => {
+            try {
+              if(json.admin){
+                setAdmin(true)
+              }
+            } catch(err) {
+              props.setStatus("Error: please try again later")
+          }
+        })
+        .catch((err)=>{
+          console.log("There was an error inside of onAuthChanged")
+        })
     } else {
       setLoggedIn(false);
       setLoggedOut(true);
       setSignedInEmail("");
       setSignedInUID("");
+      setAdmin(false)
     }
   });
 
@@ -26,6 +41,7 @@ function Spa() {
           loggedIn={loggedIn}
           loggedOut={loggedOut}
           signedInEmail={signedInEmail}
+          admin={admin}
         />
         <UserContext.Provider
           value={{

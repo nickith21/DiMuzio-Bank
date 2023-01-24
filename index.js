@@ -98,6 +98,13 @@ app.get("/account/findOne/:id", function (req, res) {
   });
 });
 
+// update all users with admin attribute
+app.get("/account/updateMany", function (req, res) {
+  dal.updateMany().then((response) => {
+    console.log(response);
+  });
+});
+
 // update - deposit/withdraw amount
 app.get("/account/update/:id/:amount", function (req, res) {
   var amount = Number(req.params.amount);

@@ -163,6 +163,7 @@ function LoginForm(props) {
               handleGoogleSignIn(history);
             }}
           >
+            <img src="google-logo.png" className="img-fluid" style={{height:25, padding:1}} alt="Responsive image"/>
             Login with Google
           </button>
         )}

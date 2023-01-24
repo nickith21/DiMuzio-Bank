@@ -56,7 +56,7 @@ function CreateForm(props) {
       })
       .then((userCredential) => {
         console.log(name, email, password);
-        const url = `/account/create/${name}/${email}/${password}/${userCredential.user.uid}`;
+         const url = `/account/create/${name}/${email}/${password}/${userCredential.user.uid}`;
         (async () => {
           var res = await fetch(url);
           var data = await res.json();

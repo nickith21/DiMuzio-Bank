@@ -1,4 +1,4 @@
-function NavBar({ loggedOut, loggedIn, signedInEmail }) {
+function NavBar({ loggedOut, loggedIn, signedInEmail, admin }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">
@@ -31,7 +31,7 @@ function NavBar({ loggedOut, loggedIn, signedInEmail }) {
               </a>
             </li>
           )}
-          {loggedIn && (
+          {/* {loggedIn && (
             <li className="nav-item">
               <a className="nav-link" href="#/routeAuthentication/">
                 Route Authentication
@@ -44,7 +44,7 @@ function NavBar({ loggedOut, loggedIn, signedInEmail }) {
                 Modal
               </a>
             </li>
-          )}
+          )} */}
           {loggedIn && (
             <li className="nav-item">
               <a className="nav-link" href="#/deposit/">
@@ -66,7 +66,7 @@ function NavBar({ loggedOut, loggedIn, signedInEmail }) {
               </a>
             </li>
           )}
-          {loggedIn && (
+          {admin && (
             <li className="nav-item">
               <a className="nav-link" href="#/alldata/">
                 AllData
