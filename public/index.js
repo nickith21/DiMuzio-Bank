@@ -12,25 +12,25 @@ function Spa() {
       setSignedInEmail(user.email);
       setSignedInUID(user.uid);
       fetch(`/account/findOne/${user.uid}`)
-        .then(response => response.json())
-        .then(json => {
-            try {
-              if(json.admin){
-                setAdmin(true)
-              }
-            } catch(err) {
-              props.setStatus("Error: please try again later")
+        .then((response) => response.json())
+        .then((json) => {
+          try {
+            if (json.admin) {
+              setAdmin(true);
+            }
+          } catch (err) {
+            props.setStatus("Error: please try again later");
           }
         })
-        .catch((err)=>{
-          console.log("There was an error inside of onAuthChanged")
-        })
+        .catch((err) => {
+          console.log("There was an error inside of onAuthChanged");
+        });
     } else {
       setLoggedIn(false);
       setLoggedOut(true);
       setSignedInEmail("");
       setSignedInUID("");
-      setAdmin(false)
+      setAdmin(false);
     }
   });
 
@@ -58,6 +58,16 @@ function Spa() {
           <div className="container" style={{ padding: "20px" }}>
             <Route path="/" exact component={Home} />
             <Route path="/CreateAccount/" component={CreateAccount} />
+            <Route path="/transactions/" component={Transactions} />
+            <Route
+              path="/account/"
+              render={() => (
+                <Account
+                  signedInEmail={signedInEmail}
+                  signedInUID={signedInUID}
+                />
+              )}
+            />
             <Route path="/login/" component={Login} />
             <Route
               path="/routeAuthentication/"

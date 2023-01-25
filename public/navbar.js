@@ -61,6 +61,13 @@ function NavBar({ loggedOut, loggedIn, signedInEmail, admin }) {
           )}
           {loggedIn && (
             <li className="nav-item">
+              <a className="nav-link" href="#/transactions/">
+                Transactions
+              </a>
+            </li>
+          )}
+          {loggedIn && (
+            <li className="nav-item">
               <a className="nav-link" href="#/balance/">
                 Balance
               </a>
@@ -82,7 +89,9 @@ function NavBar({ loggedOut, loggedIn, signedInEmail, admin }) {
           )}
         </ul>
         {loggedIn && (
-          <button className="btn btn-outline-success ml-auto" type="submit">
+          <button className="btn btn-outline-success ml-auto" type="submit" onClick={()=>{
+            location.href = "#/account/"
+          }}>
             {signedInEmail}
           </button>
         )}

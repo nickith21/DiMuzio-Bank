@@ -9,7 +9,7 @@ function Logout() {
         render={({ history }) => (
           <button
             type="submit"
-            className="btn btn-light"
+            className="btn btn-primary btn-lg px-4"
             onClick={() => {
               logout(history);
             }}
