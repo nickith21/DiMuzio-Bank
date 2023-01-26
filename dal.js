@@ -74,6 +74,17 @@ function findOne(id) {
   });
 }
 
+// find user transactions
+function findOnesTransactions(id) {
+  return new Promise((resolve, reject) => {
+    const customers = db
+      .collection("users")
+      .findOne({ _id: id })
+      .then((doc) => resolve(doc))
+      .catch((err) => reject(err));
+  });
+}
+
 // update - deposit/withdraw amount
 function update(id, amount) {
   return new Promise((resolve, reject) => {
@@ -102,4 +113,4 @@ function all() {
   });
 }
 
-module.exports = { create, createWithFS, updateMany, findOne, find, update, all };
+module.exports = { create, createWithFS, updateMany, findOne, findOnesTransactions, find, update, all };

@@ -98,6 +98,15 @@ app.get("/account/findOne/:id", function (req, res) {
   });
 });
 
+// find one users transactions by id
+// connects to balance.js
+app.get("/account/findOnesTransactions/:id", function (req, res) {
+  dal.findOne(req.params.id).then((user) => {
+    console.log(user);
+    res.send(user);
+  });
+});
+
 // update all users with admin attribute
 app.get("/account/updateMany", function (req, res) {
   dal.updateMany().then((response) => {

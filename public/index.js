@@ -58,7 +58,7 @@ function Spa() {
           <div className="container" style={{ padding: "20px" }}>
             <Route path="/" exact component={Home} />
             <Route path="/CreateAccount/" component={CreateAccount} />
-            <Route path="/transactions/" component={Transactions} />
+            <Route path="/transactions/" render={() => <Transactions signedInUID={signedInUID} />} />
             <Route
               path="/account/"
               render={() => (
