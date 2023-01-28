@@ -74,6 +74,7 @@ function Spa() {
               component={routeAuthentication}
             />
             <Route path="/logout/" component={Logout} />
+            <Route path="/cookiePolicy/" component={cookiePolicy} />
             <Route path="/modal/" component={Modal} />
             <Route
               path="/deposit/"
@@ -91,6 +92,7 @@ function Spa() {
             <Route path="/alldata/" component={AllData} />
           </div>
         </UserContext.Provider>
+        <CookieWarning/>
       </div>
     </HashRouter>
   );
