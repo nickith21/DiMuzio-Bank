@@ -75,13 +75,21 @@ function findOne(id) {
 }
 
 // find user transactions
-function findOnesTransactions(id) {
+function addTransaction(type, id, amount) {
   return new Promise((resolve, reject) => {
-    const customers = db
-      .collection("users")
-      .findOne({ _id: id })
-      .then((doc) => resolve(doc))
-      .catch((err) => reject(err));
+    const filter = { _id: id };
+    const update = {
+      $push: {
+        transactions: {
+          type: type,
+          date: new Date(),
+          amount: amount
+        }
+      },
+    };
+    db.collection("users").updateOne(filter, update, function (err, result) {
+      err ? reject(err) : resolve(result);
+    });
   });
 }
 
@@ -113,4 +121,13 @@ function all() {
   });
 }
 
-module.exports = { create, createWithFS, updateMany, findOne, findOnesTransactions, find, update, all };
+module.exports = {
+  create,
+  createWithFS,
+  updateMany,
+  findOne,
+  addTransaction,
+  find,
+  update,
+  all,
+};

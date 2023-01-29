@@ -32,6 +32,14 @@ function WithdrawForm(props){
   const [amount, setAmount] = React.useState('');
 
   function handle(){
+    
+    const urlAddTransaction = `/account/addTransaction/Withdraw/${props.signedInUID}/${amount}`;
+    (async () => {
+      var res = await fetch(urlAddTransaction);
+      var data = await res.json();
+      console.log(data);
+    })();
+    
     fetch(`/account/update/${props.signedInUID}/-${amount}`)
     .then(response => response.text())
     .then(text => {

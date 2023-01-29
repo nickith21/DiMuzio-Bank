@@ -18,9 +18,9 @@ app.get("/unauthenticatedRoute", (req, res) => {
 app.get("/authenticatedRoute", (req, res) => {
   // read the authorization header from the request that is being sent by the client
   const idToken = req.headers.authorization;
-  const name = req.headers.name
+  const name = req.headers.name;
   console.log("header:", idToken);
-  console.log("name:",name)
+  console.log("name:", name);
   // verify the token by decoding it
   admin
     .auth()
@@ -46,7 +46,12 @@ app.get("/account/create/:name/:email/:password/:id", function (req, res) {
     } else {
       // else create user
       dal
-        .create(req.params.name, req.params.email, req.params.password, req.params.id)
+        .create(
+          req.params.name,
+          req.params.email,
+          req.params.password,
+          req.params.id
+        )
         .then((user) => {
           console.log(user);
           res.send(user);
@@ -56,14 +61,22 @@ app.get("/account/create/:name/:email/:password/:id", function (req, res) {
 });
 
 // id: 1 + 2 - firestore - create user account
-app.get("/account/create-with-firestore/:name/:email/:password/:id", function (req, res) {
+app.get(
+  "/account/create-with-firestore/:name/:email/:password/:id",
+  function (req, res) {
     dal
-      .createWithFS(req.params.name, req.params.email, req.params.password, req.params.id)
+      .createWithFS(
+        req.params.name,
+        req.params.email,
+        req.params.password,
+        req.params.id
+      )
       .then((user) => {
         console.log(user);
         res.send(user);
       });
-});
+  }
+);
 
 // login user
 app.get("/account/login/:email/:password", function (req, res) {
@@ -98,15 +111,6 @@ app.get("/account/findOne/:id", function (req, res) {
   });
 });
 
-// find one users transactions by id
-// connects to balance.js
-app.get("/account/findOnesTransactions/:id", function (req, res) {
-  dal.findOne(req.params.id).then((user) => {
-    console.log(user);
-    res.send(user);
-  });
-});
-
 // update all users with admin attribute
 app.get("/account/updateMany", function (req, res) {
   dal.updateMany().then((response) => {
@@ -121,6 +125,23 @@ app.get("/account/update/:id/:amount", function (req, res) {
   dal.update(req.params.id, amount).then((response) => {
     console.log(response);
     res.send(response);
+  });
+});
+
+app.get("/account/addTransaction/:type/:id/:amount", function (req, res) {
+  dal
+    .addTransaction(req.params.type, req.params.id, req.params.amount)
+    .then((response) => {
+      console.log(response);
+      res.send(response);
+    });
+});
+
+// find one users transactions by id
+app.get("/account/findOnesTransactions/:id", function (req, res) {
+  dal.findOne(req.params.id).then((user) => {
+    console.log(user);
+    res.send(user);
   });
 });
 
