@@ -1,14 +1,17 @@
 {
-  "name": "littledb",
+  "name": "DiMuzio-Bank",
   "version": "1.0.0",
-  "description": "lowdb sample for 1.125",
+  "description": "banking application",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "jest",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "author": "abel@mit.edu",
+  "homepage": "http://nickith21.github.io/DiMuzio-Bank",
+  "author": "ndd243@gmail.com",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.4",
@@ -21,6 +24,7 @@
     "puppeteer": "^19.6.2"
   },
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "nodemon": "^2.0.20"
   }
 }
